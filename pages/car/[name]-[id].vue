@@ -1,6 +1,6 @@
 <script setup>
 const route = useRoute();
-const { cars } = useCars();
+const car = await useFetchCar(route.params.id)
 const { toTitleCase } = useUtilities();
 useHead({
   title: toTitleCase(route.params.name),
@@ -17,12 +17,6 @@ definePageMeta({
       });
     }
   },
-});
-
-const car = computed(() => {
-  return cars.find((c) => {
-    return c.id === parseInt(route.params.id);
-  });
 });
 
 definePageMeta({
